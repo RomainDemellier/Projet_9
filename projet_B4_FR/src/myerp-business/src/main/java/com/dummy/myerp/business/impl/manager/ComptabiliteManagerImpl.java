@@ -1,6 +1,7 @@
 package com.dummy.myerp.business.impl.manager;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -134,6 +135,20 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 
         // TODO ===== RG_Compta_5 : Format et contenu de la référence
         // vérifier que l'année dans la référence correspond bien à la date de l'écriture, idem pour le code journal...
+        if(pEcritureComptable.getReference() != null) {
+            String code = pEcritureComptable.getReference().substring(0, 2);
+            if(!code.equals(pEcritureComptable.getJournal().getCode())) {
+            	throw new FunctionalException("Le code du journal dans la référence ne correspond pas au code du journal");
+            }
+            
+            String anneeRef = pEcritureComptable.getReference().substring(3, 7);
+            
+            SimpleDateFormat formater = new SimpleDateFormat("yyyy");
+            String annee = formater.format(pEcritureComptable.getDate());
+            if(!anneeRef.equals("2020")) {
+            	throw new FunctionalException("L'année ne correspond pas");
+            }
+        }
     }
 
 
