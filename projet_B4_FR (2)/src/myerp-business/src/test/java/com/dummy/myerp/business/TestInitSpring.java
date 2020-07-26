@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
+import static org.assertj.core.api.Assertions.*;
+
 
 /**
  * Classe de test de l'initialisation du contexte Spring
@@ -24,7 +26,7 @@ public class TestInitSpring extends BusinessTestCase {
     @Test
     public void testInit() {
         SpringRegistry.init();
-        assertNotNull(SpringRegistry.getBusinessProxy());
-        assertNotNull(SpringRegistry.getTransactionManager());
+        assertThat(SpringRegistry.getBusinessProxy()).isNotNull();
+        assertThat(SpringRegistry.getTransactionManager()).isNotNull();
     }
 }

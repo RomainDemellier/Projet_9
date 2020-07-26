@@ -25,7 +25,7 @@ public class EcritureComptable {
     /** Journal comptable */
     @NotNull private JournalComptable journal;
     /** The Reference. */
-    @Pattern(regexp = "^[A-Z]{1,2}-\\d{4}/\\d{5}")
+    @Pattern(regexp = "^[A-Z]{1,5}-\\d{4}/\\d{5}")
     private String reference;
     /** The Date. */
     @NotNull private Date date;
@@ -37,7 +37,7 @@ public class EcritureComptable {
 
     /** La liste des lignes d'écriture comptable. */
     @Valid
-    @Size(min = 2)
+    @Size(min = 2, message = "Il faut au moins deux lignes d'écriture")
     private final List<LigneEcritureComptable> listLigneEcriture = new ArrayList<>();
 
 
@@ -94,7 +94,7 @@ public class EcritureComptable {
             }
         }
         
-        vRetour = vRetour.setScale(2, RoundingMode.CEILING);
+        //vRetour = vRetour.setScale(2, RoundingMode.CEILING);
         
         return vRetour;
     }
@@ -112,7 +112,7 @@ public class EcritureComptable {
             }
         }
         
-        vRetour = vRetour.setScale(2, RoundingMode.CEILING);
+        //vRetour = vRetour.setScale(2, RoundingMode.CEILING); 
         
         return vRetour;
     }
@@ -122,8 +122,8 @@ public class EcritureComptable {
      * @return boolean
      */
     public boolean isEquilibree() {
-        boolean vRetour = this.getTotalDebit().equals(getTotalCredit());
-        return vRetour;
+        int vRetour = this.getTotalDebit().compareTo(getTotalCredit());
+        return vRetour == 0;
     }
 
     // ==================== Méthodes ====================

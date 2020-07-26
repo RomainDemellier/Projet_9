@@ -17,6 +17,7 @@
 
 	<!-- ===== Maven ===== -->
 	<artifactId>myerp-model</artifactId>
+	<!-- <packaging>war</packaging> -->
 
 	<!-- ===== General information ===== -->
 	<name>${project.artifactId}</name>
@@ -54,8 +55,11 @@
 
 		<!-- ========== Test Dependencies ========== -->
 		<!-- ===== Tests ===== -->
-		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
-			<scope>test</scope> </dependency> -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

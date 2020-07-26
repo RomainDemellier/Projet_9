@@ -6,6 +6,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.*;
 
 public class EcritureComptableTest {
 
@@ -19,7 +20,7 @@ public class EcritureComptableTest {
                                                                     vDebit, vCredit);
         return vRetour;
     }
-
+    
     @Test
     public void isEquilibree() {
         EcritureComptable vEcriture;

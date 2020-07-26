@@ -16,6 +16,7 @@
 
 	<!-- ===== Maven ===== -->
 	<artifactId>myerp-consumer</artifactId>
+	<!-- <packaging>war</packaging> -->
 
 	<!-- ===== General information ===== -->
 	<name>${project.artifactId}</name>
@@ -60,7 +61,12 @@
 		<!-- ========== Test Dependencies ========== -->
 		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
 			<scope>test</scope> </dependency> -->
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -137,5 +143,41 @@
 	<!-- Build -->
 	<!-- =============================================================== -->
 	<build>
+			<plugins>
+			<!-- ===== Java compilation ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- ===== "Filtrage/Parsing" des resources ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- ===== Gestion des dépendences ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0</version>
+			</plugin>
+
+			<!-- ===== Création des JAR ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+			</plugin>
+		</plugins>
 	</build>
 </project>
