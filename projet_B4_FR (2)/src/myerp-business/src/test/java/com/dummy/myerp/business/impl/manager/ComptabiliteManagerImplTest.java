@@ -88,10 +88,10 @@ public class ComptabiliteManagerImplTest {
         vEcritureComptable.setDate(new Date());
         vEcritureComptable.setLibelle("Libelle");
         vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
-                                                                                 null, new BigDecimal(123),
+                                                                                 null, null,
                                                                                  null));
         vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
-                                                                                 null, new BigDecimal(123),
+                                                                                 null, null, 
                                                                                  null));
         vEcritureComptable.setReference("AC-2020/00001");
         manager.checkEcritureComptableUnit(vEcritureComptable);
