@@ -56,17 +56,16 @@
 		<spring.version>4.3.7.RELEASE</spring.version>
 
 
-		<!-- Sonar -->
-		<!-- <sonar.Java.coveragePlugin>jacoco</sonar.Java.coveragePlugin> <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis> 
-			<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath> 
-			<sonar.language>Java</sonar.language> -->
 
-		<!-- <maven.compiler.source>1.8</maven.compiler.source> <maven.compiler.target>1.8</maven.compiler.target> 
-			<javac.src.version>1.8</javac.src.version> <javac.target.version>1.8</javac.target.version> -->
-
-		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
-			<maven.compiler.source>1.8</maven.compiler.source> <maven.compiler.target>1.8</maven.compiler.target> 
-			<java.home>/usr/lib/jvm/java-8-openjdk-amd64/bin/javac</java.home> -->
+		<sonar.projectKey>RomainDemellier_Projet_9</sonar.projectKey>
+		<sonar.moduleKey>${artifactId}</sonar.moduleKey>
+		<sonar.organization>romaindemellier</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>34a637bb3516ccd2e03327d9a7246592cdceccf2</sonar.login>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.language>java</sonar.language>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -408,13 +407,19 @@
 		<plugins>
 			<!-- ===== Jacoco ===== -->
 
-<!-- 			<plugin>
+			<!-- <plugin> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
+				<version>0.7.9</version> <executions> <execution> <id>prepare-agent</id> 
+				<goals> <goal>prepare-agent</goal> </goals> </execution> <execution> <id>report</id> 
+				<phase>prepare-package</phase> <goals> <goal>report</goal> </goals> </execution> 
+				<execution> <id>report-aggregate</id> <phase>verify</phase> <goals> <goal>report-aggregate</goal> 
+				</goals> </execution> </executions> </plugin> -->
+
+			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.7.9</version>
 				<executions>
 					<execution>
-						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
@@ -426,35 +431,10 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-					<execution>
-						<id>report-aggregate</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>report-aggregate</goal>
-						</goals>
-					</execution>
 				</executions>
-			</plugin> -->
-			
-			<plugin>
-	<groupId>org.jacoco</groupId>
-	<artifactId>jacoco-maven-plugin</artifactId>
-	<version>0.7.9</version>
-	<executions>
-		<execution>
-			<goals>
-				<goal>prepare-agent</goal>
-			</goals>
-		</execution>
-	        <execution>
-	                <id>report</id>
-		        <phase>prepare-package</phase>
-		        <goals>
-			       <goal>report</goal>
-		        </goals>
-	       </execution>
-	</executions>
-</plugin>
+			</plugin>
+
+
 		</plugins>
 		<!-- </plugins> -->
 	</build>
