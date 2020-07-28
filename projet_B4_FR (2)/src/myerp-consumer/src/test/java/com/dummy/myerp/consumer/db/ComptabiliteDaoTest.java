@@ -30,3 +30,4 @@ public class ComptabiliteDaoTest {
 		assertThat(n).isEqualTo(7);
 	}
 }
+ 
