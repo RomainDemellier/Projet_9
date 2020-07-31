@@ -7,6 +7,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.dummy.myerp.consumer.dao.contrat.ComptabiliteDao;
 import com.dummy.myerp.consumer.dao.impl.db.rowmapper.comptabilite.CompteComptableRM;
 import com.dummy.myerp.consumer.dao.impl.db.rowmapper.comptabilite.EcritureComptableRM;
@@ -26,6 +29,7 @@ import com.dummy.myerp.technical.exception.NotFoundException;
 /**
  * Implémentation de l'interface {@link ComptabiliteDao}
  */
+@Transactional
 public class ComptabiliteDaoImpl extends AbstractDbConsumer implements ComptabiliteDao {
 
     // ==================== Constructeurs ====================
@@ -149,7 +153,7 @@ public class ComptabiliteDaoImpl extends AbstractDbConsumer implements Comptabil
         }
         return vBean;
     }
-
+ 
 
     /** SQLgetEcritureComptableByRef */
     private static String SQLgetEcritureComptableByRef;
@@ -204,10 +208,11 @@ public class ComptabiliteDaoImpl extends AbstractDbConsumer implements Comptabil
         vSqlParams.addValue("derniere_valeur", pSequenceEcritureComptable.getDerniereValeur());
         
         vJdbcTemplate.update(SQLinsertSequenceEcritureComptable, vSqlParams);
+        
     }
     
     // ==================== EcritureComptable - INSERT ====================
-
+  
     /** SQLinsertEcritureComptable */
     private static String SQLinsertEcritureComptable;
     public void setSQLinsertEcritureComptable(String pSQLinsertEcritureComptable) {
@@ -224,8 +229,8 @@ public class ComptabiliteDaoImpl extends AbstractDbConsumer implements Comptabil
         vSqlParams.addValue("libelle", pEcritureComptable.getLibelle());
 
         vJdbcTemplate.update(SQLinsertEcritureComptable, vSqlParams);
-
-        // ----- Récupération de l'id
+        
+//        // ----- Récupération de l'id
         Integer vId = this.queryGetSequenceValuePostgreSQL(DataSourcesEnum.MYERP, "myerp.ecriture_comptable_id_seq",
                                                            Integer.class);
         pEcritureComptable.setId(vId);

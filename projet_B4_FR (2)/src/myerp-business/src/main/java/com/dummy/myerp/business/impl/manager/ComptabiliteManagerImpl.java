@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.transaction.TransactionStatus;
 import com.dummy.myerp.business.contrat.manager.ComptabiliteManager;
 import com.dummy.myerp.business.impl.AbstractBusinessManager;
+import com.dummy.myerp.business.impl.BusinessProxyImpl;
+import com.dummy.myerp.consumer.dao.impl.DaoProxyImpl;
 import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
@@ -36,6 +38,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 	 * Instantiates a new Comptabilite manager.
 	 */
 	public ComptabiliteManagerImpl() {
+		
 	}
 
 	// ==================== Getters/Setters ====================
@@ -338,7 +341,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 			vTS = null;
 		} finally {
 			getTransactionManager().rollbackMyERP(vTS);
-		}
+		}   
 	}
 
 	/**

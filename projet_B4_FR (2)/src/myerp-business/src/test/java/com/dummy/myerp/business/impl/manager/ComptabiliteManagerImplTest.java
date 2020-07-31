@@ -12,8 +12,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 //import org.junit.rules.ExpectedException;
 //import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.dummy.myerp.business.BusinessTestCase;
 import com.dummy.myerp.business.SpringRegistry;
@@ -28,8 +33,9 @@ import com.dummy.myerp.technical.exception.NotFoundException;
 
 import static org.assertj.core.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 public class ComptabiliteManagerImplTest {
-
+	
     private ComptabiliteManagerImpl manager = new ComptabiliteManagerImpl();
 
     public ComptabiliteManagerImplTest() {
@@ -38,9 +44,15 @@ public class ComptabiliteManagerImplTest {
     	SpringRegistry.init();
 	}
     
-    @Test
+    
+//    @BeforeAll
+//    public void init() {
+//    	SpringRegistry.init();
+//    }
+    
+    @Test  
     public void checkEcritureComptableUnit() throws Exception {
-    	SpringRegistry.init();
+    	//SpringRegistry.init();
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
         vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
@@ -55,7 +67,7 @@ public class ComptabiliteManagerImplTest {
         vEcritureComptable.setReference("AC-2020/00001");
         manager.checkEcritureComptableUnit(vEcritureComptable);
     }
-
+ 
     @Test(expected = FunctionalException.class)
     public void checkEcritureComptableUnitViolation() throws Exception {
         EcritureComptable vEcritureComptable;

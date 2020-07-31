@@ -56,25 +56,19 @@
 	<!-- ==================== Databases ==================== -->
 	<!-- <bean id="dataSourceMYERP" class="com.dummy.myerp.technical.util.spring.NullFactoryBean"> 
 		<constructor-arg value="javax.sql.DataSource"/> </bean> -->
+		
+		    <bean id="dataSourceMYERP" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://127.0.0.1:9032/db_myerp" />
+        <property name="username" value="usr_myerp" />
+        <property name="password" value="myerp" />
+        <property name="initialSize" value="1" />
+        <property name="maxOpenPreparedStatements" value="5" />
+    </bean>
 
-	<bean id="dataSourceTicketConfiguration"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="location"
-			value="classpath:/com/dummy/myerp/consumer/db_test.properties" />
-	</bean>
-
-	<bean id="dataSourceMYERP"
-
-		class="org.apache.commons.dbcp2.BasicDataSourceFactory"
-		factory-method="createDataSource" destroy-method="close">
-		<constructor-arg ref="dataSourceTicketConfiguration" />
-	</bean>
-
-<!-- 	<bean id="txManagerMYERP"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSourceMYERP" />
-	</bean> -->
-
+    <bean id="txManagerMYERP" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceMYERP"/>
+    </bean>
 
 	<!-- ========== SQL ========== -->
 	<import resource="sqlContext.xml" />
