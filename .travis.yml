@@ -7,8 +7,9 @@ language: java
 
 version: '2'
 services:
+  - postgresql
   myerp.db:
-    image: postgres:9.4
+    image: postgres:10.12
     ports:
       - "127.0.0.1:9032:5432"
     volumes:
