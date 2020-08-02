@@ -10,7 +10,7 @@ services:
   myerp.db:
     image: postgres:10.12
     ports:
-     - "5432"
+     - "9032"
 
     volumes:
        - "./data/db:/var/lib/postgresql/data"
