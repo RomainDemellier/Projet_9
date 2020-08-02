@@ -8,12 +8,11 @@ language: java
 version: '2'
 services:
   myerp.db:
-    image: postgres:10.12
+    image: postgres:9.4
     ports:
-     - "9032"
-
+      - "127.0.0.1:9032:5432"
     volumes:
-       - "./data/db:/var/lib/postgresql/data"
+#      - "./data/db:/var/lib/postgresql/data"
        - "./init/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
     environment:
       - POSTGRES_DB=db_myerp
