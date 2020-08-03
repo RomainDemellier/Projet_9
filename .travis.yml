@@ -14,11 +14,14 @@ addons:
     token:
       secure: "igNkmo0eEIG9KBAXTYNm9evCHERJp9IW+TbM2Krbs1rU8947u6NFieSQy4bqJN4h9kuX/ygdjzFuRZ8sifls7w/ljqUXAKe6Z8AJXU5B74qEMa65LhPxLGkfWArRqGkk7z1c9G/ASpBn7J/MZ8qHxECG1zfpMmDcHMf/mR9sJiSg2QfsuDaNBZOxaGgPIV+06VrOmBTdOKPJULBYXVjePfgyhigx0hUOaXdJfI02zMqhlEYrJG7GK0zXcpJXvq7ftx0IhPZfwVLlQGAwRfivhv8AdEtRk7YxJYVoJs6Zj5vOY3ILm3347dBegr3iKGxjYV5wAT7nX9nc6VX95temn1XRKOlYPNTr/dR7wXYsNEOfJ27n7ieO7MIBKdYnIEd4c9i/+5E9Pi6xBNi8ooKbTiJFkjZwvULnE/aYLoH4Uxd+7qOMZCjd4BgVKgHDclvC9xcAPdzyGvKMaNVWrVCO7my0FjdLbZlFJdVWqVHNciwaGKDRHVVMnFzWELZEgQbMIPYvoPeE1D63Qkvy4KY6C4fFStdv43R9nFwHEKWrecXFpPMV8g8v7S60wV3UZWSU/oAWgYeajPObzyOmYpMCcOJvjtctML5TEtjzwOVrzGaWTNwWXmHHyPwf4UoAj8AL5q6TWp06iHYJadwQsa6ECPOPfNCVNgzI4G2u92yqmtI=
 " # encrypted value of your token
-script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+
+before_script:
   - cd projet_B4_FR/docker/dev
   - docker-compose up
   - cd ..;cd ..;cd ..
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - cd projet_B4_FR/src/ 
   - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=RomainDemellier_Projet_9 -Pcoverage
 
