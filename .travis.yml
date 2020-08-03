@@ -9,7 +9,7 @@ services:
   - docker
 
 script:
-  - cd projet_B4_FR (2)/docker/dev
+  - cd projet_B4_FR(2)/docker/dev
   - docker-compose up
 
 addons:
