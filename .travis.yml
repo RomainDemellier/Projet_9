@@ -23,5 +23,5 @@ before_install:
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - cd projet_B4_FR/src/ 
-  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=RomainDemellier_Projet_9 -Pcoverage
+  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=RomainDemellier_Projet_9
 
