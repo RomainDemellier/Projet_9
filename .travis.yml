@@ -17,7 +17,7 @@ addons:
 
 before_install:
   - cd projet_B4_FR/docker/dev
-  - docker-compose up
+  - docker-compose up -d --build
   - cd ..;cd ..;cd ..
 
 script:
