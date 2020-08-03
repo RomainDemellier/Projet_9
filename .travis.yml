@@ -5,10 +5,12 @@ dist: xenial
 sudo: required
 language: java
 
-version: '2'
 services:
-  environment:
-    - DATABASE_URL=postgresql://localhost:9032/db_myerp
+  - docker
+
+script:
+  - cd projet_B4_FR (2)/docker/dev
+  - docker-compose up
 
 addons:
   sonarcloud:
