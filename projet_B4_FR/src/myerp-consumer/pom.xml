@@ -38,6 +38,7 @@
 	<!-- Properties -->
 	<!-- =============================================================== -->
 	<properties>
+		<sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
 
@@ -112,8 +113,9 @@
 	<!-- =============================================================== -->
 	<!-- Profiles -->
 	<!-- =============================================================== -->
+	<!-- Avant -->
 	<profiles>
-		<profile>
+<!-- 		<profile>
 			<id>coverage</id>
 			<build>
 				<plugins>
@@ -138,7 +140,8 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>
+		</profile> -->
+		<!--  -->
 		<!-- Profile utilisé pour lancer les tests d'intégration de la couche Consumer -->
 		<profile>
 			<id>test-consumer</id>

@@ -39,6 +39,7 @@
 	<!-- Properties -->
 	<!-- =============================================================== -->
 	<properties>
+		<sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
 
@@ -87,7 +88,8 @@
 	<!-- =============================================================== -->
 	<!-- Build -->
 	<!-- =============================================================== -->
-	<profiles>
+	<!-- Avant -->
+<!-- 	<profiles>
 		<profile>
 			<id>coverage</id>
 			<build>
@@ -114,7 +116,8 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles>
+	</profiles> -->
+	<!--  -->
 	<build>
 	</build>
 </project>

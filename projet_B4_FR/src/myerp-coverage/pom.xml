@@ -61,6 +61,10 @@
 
 		<!-- Fin -->
 
+		<!-- Après -->
+		<sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+		<!-- -->
+
 
 	</properties>
 
@@ -96,98 +100,44 @@
 	</dependencies>
 
 	<build>
-		<!-- <pluginManagement> -->
-		<!-- <pluginManagement> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
-			<artifactId>maven-dependency-plugin</artifactId> </plugin> </plugins> </pluginManagement> -->
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
-				<configuration>
-					<!-- Jacoco prepare-agent builds some command-line params without -->
-					<!-- which jacoco will not instrument. Hence it is important to add -->
-					<!-- those command-line params here (${argLine} holds those params) -->
-					<argLine>${argLine} -Xms256m -Xmx2048m</argLine>
-					<forkCount>1</forkCount>
-					<runOrder>random</runOrder>
-				</configuration>
-			</plugin>
 
+			<!-- Après -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>report-aggregate</id>
-						<phase>verify</phase>
+						<id>report</id>
 						<goals>
 							<goal>report-aggregate</goal>
 						</goals>
+						<phase>verify</phase>
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
-				<executions> Copy the ant tasks jar. Needed for ts.jacoco.report-ant . <execution> 
-				<id>jacoco-dependency-ant</id> <goals> <goal>copy</goal> </goals> <phase>process-test-resources</phase> 
-				<inherited>false</inherited> <configuration> <artifactItems> <artifactItem> 
-				<groupId>org.jacoco</groupId> <artifactId>org.jacoco.ant</artifactId> <version>${jacoco.version}</version> 
-				</artifactItem> </artifactItems> <stripVersion>true</stripVersion> <outputDirectory>${basedir}/target/jacoco-jars</outputDirectory> 
-				</configuration> </execution> </executions> </plugin> -->
+			<!-- -->
 
-			<!-- Début -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-antrun-plugin</artifactId> 
-				<version>1.6</version> <executions> <execution> <phase>post-integration-test</phase> 
-				<goals> <goal>run</goal> </goals> <configuration> <target> Execute an ant 
-				task within maven <echo message="Generating JaCoCo Reports" /> <taskdef name="report" 
-				classname="org.jacoco.ant.ReportTask"> <classpath path="${basedir}/target/jacoco-jars/org.jacoco.ant.jar" 
-				/> </taskdef> <mkdir dir="${basedir}/target/coverage-report" /> <report> 
-				<executiondata> <fileset dir="${build.directory.myerp-business}"> <include 
-				name="jacoco.exec" /> </fileset> <fileset dir="${build.directory.myerp-consumer}"> 
-				<include name="jacoco.exec" /> </fileset> <fileset dir="${build.directory.myerp-model}"> 
-				<include name="jacoco.exec" /> </fileset> <fileset dir="${build.directory.myerp-technical}"> 
-				<include name="jacoco.exec" /> </fileset> </executiondata> <structure name="jacoco-multi 
-				Coverage Project"> <group name="jacoco-multi"> <classfiles> <fileset dir="${classes.directory.myerp-business}" 
-				/> <fileset dir="${classes.directory.myerp-consumer}" /> <fileset dir="${classes.directory.myerp-model}" 
-				/> <fileset dir="${classes.directory.myerp-technical}" /> </classfiles> <sourcefiles 
-				encoding="UTF-8"> <fileset dir="${sources.directory.myerp-business}" /> <fileset 
-				dir="${sources.directory.myerp-consumer}"></fileset> <fileset dir="${sources.directory.myerp-model}" 
-				/> <fileset dir="${sources.directory.myerp-technical}"></fileset> </sourcefiles> 
-				</group> </structure> <html destdir="${basedir}/target/coverage-report/html" 
-				/> <xml destfile="${basedir}/target/coverage-report/coverage-report.xml" 
-				/> <csv destfile="${basedir}/target/coverage-report/coverage-report.csv" 
-				/> </report> </target> </configuration> </execution> </executions> <dependencies> 
-				<dependency> <groupId>org.jacoco</groupId> <artifactId>org.jacoco.ant</artifactId> 
-				<version>0.7.9</version> </dependency> </dependencies> </plugin> -->
+
+
+			<!-- Avant -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+				<version>2.19.1</version> <configuration> <argLine>${argLine} -Xms256m -Xmx2048m</argLine> 
+				<forkCount>1</forkCount> <runOrder>random</runOrder> </configuration> </plugin> 
+				<plugin> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
+				<executions> <execution> <id>report-aggregate</id> <phase>verify</phase> 
+				<goals> <goal>report-aggregate</goal> </goals> </execution> </executions> 
+				</plugin> -->
+			<!-- -->
 		</plugins>
-		<!-- </pluginManagement> -->
 	</build>
 	<profiles>
-		<profile>
-			<id>coverage</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.8.5</version>
-						<executions>
-							<execution>
-								<id>prepare-agent</id>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>report</id>
-								<goals>
-									<goal>report</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+		<!-- Avant -->
+		<!-- <profile> <id>coverage</id> <build> <plugins> <plugin> <groupId>org.jacoco</groupId> 
+			<artifactId>jacoco-maven-plugin</artifactId> <version>0.8.5</version> <executions> 
+			<execution> <id>prepare-agent</id> <goals> <goal>prepare-agent</goal> </goals> 
+			</execution> <execution> <id>report</id> <goals> <goal>report</goal> </goals> 
+			</execution> </executions> </plugin> </plugins> </build> </profile> -->
+		<!-- -->
 	</profiles>
 </project>
