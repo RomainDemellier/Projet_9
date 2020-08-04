@@ -115,7 +115,7 @@
 	<!-- =============================================================== -->
 	<!-- Avant -->
 	<profiles>
-<!-- 		<profile>
+ 		<profile>
 			<id>coverage</id>
 			<build>
 				<plugins>
@@ -140,7 +140,7 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile> -->
+		</profile>
 		<!--  -->
 		<!-- Profile utilisé pour lancer les tests d'intégration de la couche Consumer -->
 		<profile>
