@@ -25,5 +25,5 @@ script:
   - cd projet_B4_FR/docker/dev
   - docker-compose up -d 
   - cd ../../src 
-  - mvn clean verify -Pcoverage #sonar:sonar -Pcoverage -Dsonar.projectKey=RomainDemellier_Projet_9 
+  - mvn clean verify sonar:sonar -Dsonar.projectKey=RomainDemellier_Projet_9 #-Pcoverage -Dsonar.projectKey=RomainDemellier_Projet_9 
 
