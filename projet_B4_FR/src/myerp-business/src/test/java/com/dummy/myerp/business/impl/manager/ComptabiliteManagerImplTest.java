@@ -4,6 +4,8 @@ package com.dummy.myerp.business.impl.manager;
 
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
@@ -315,7 +317,7 @@ public class ComptabiliteManagerImplTest {
         int valeurIncremente = sequenceEcritureComptable.getDerniereValeur();
       
         int n = derniereValeur + 1;
-        
+         
         assertThat(valeurIncremente).isEqualTo(n);
     }
     
@@ -363,6 +365,57 @@ public class ComptabiliteManagerImplTest {
                                                                                  null, null,
                                                                                  new BigDecimal(123)));
         manager.addReference(vEcritureComptable);
+    }
+    
+    @Test
+    public void checkEcritureComptable() throws FunctionalException {
+        EcritureComptable vEcritureComptable;
+        vEcritureComptable = new EcritureComptable();
+        vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+        vEcritureComptable.setDate(new Date());
+        vEcritureComptable.setLibelle("Libelle");
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
+                                                                                 null, new BigDecimal(123),
+                                                                                 null));
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2),
+                                                                                 null, null,
+                                                                                 new BigDecimal(123)));
+        vEcritureComptable.setReference("AC-2020/00002");
+        manager.checkEcritureComptable(vEcritureComptable);
+    }
+    
+    @Test(expected = FunctionalException.class)
+    public void checkEcritureComptableBadRef() throws FunctionalException {
+        EcritureComptable vEcritureComptable;
+        vEcritureComptable = new EcritureComptable();
+        vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+        vEcritureComptable.setDate(new Date());
+        vEcritureComptable.setLibelle("Libelle");
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
+                                                                                 null, new BigDecimal(123),
+                                                                                 null));
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2),
+                                                                                 null, null,
+                                                                                 new BigDecimal(123)));
+        vEcritureComptable.setReference("AC-2019/00001");
+        manager.checkEcritureComptable(vEcritureComptable);
+    }
+    
+    @Test(expected = FunctionalException.class)
+    public void checkEcritureComptableBadContext() throws FunctionalException, ParseException {
+        EcritureComptable vEcritureComptable;
+        vEcritureComptable = new EcritureComptable();
+        vEcritureComptable.setJournal(new JournalComptable("BQ", "Achat"));
+        vEcritureComptable.setDate(new SimpleDateFormat("yyyy-MM-dd").parse("2016-12-29"));
+        vEcritureComptable.setLibelle("Libelle");
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
+                                                                                 null, new BigDecimal(123),
+                                                                                 null));
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2),
+                                                                                 null, null,
+                                                                                 new BigDecimal(123)));
+        vEcritureComptable.setReference("BQ-2016/00005");
+        manager.checkEcritureComptable(vEcritureComptable);
     }
 
 }

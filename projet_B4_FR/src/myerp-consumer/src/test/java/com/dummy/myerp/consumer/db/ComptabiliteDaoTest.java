@@ -174,6 +174,7 @@ public class ComptabiliteDaoTest {
 			SequenceEcritureComptable sequenceEcritureComptable2 = comptabiliteDao
 					.getSequenceEcritureComptableByCodeAndByAnnee("VE", 2020);
 			assertThat(sequenceEcritureComptable2).usingRecursiveComparison().isEqualTo(sequenceEcritureComptable);
+			//assertThat(sequenceEcritureComptable2).isEqualTo(sequenceEcritureComptable);
 		} catch (NotFoundException e) {
 			// TODO: handle exception
 			throw new NotFoundException("Cette séquence n'existe pas.");
@@ -270,7 +271,7 @@ public class ComptabiliteDaoTest {
 		assertThat(eComptableTest).usingRecursiveComparison().isEqualTo(ecritureComptable);
 	}
 	
-	@Test
+	@Test 
 	@Transactional
 	@Rollback
 	public void checkDeleteEcritureComptable() throws NotFoundException {

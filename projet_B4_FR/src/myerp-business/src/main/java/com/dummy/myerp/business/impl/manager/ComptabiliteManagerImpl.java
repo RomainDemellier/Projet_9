@@ -169,23 +169,6 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 						e.printStackTrace();
 					}
 				}
-//				if (this.getEcritureComptableById(id) == null) {
-//					try {
-//						this.insertEcritureComptable(pEcritureComptable);
-//						this.insertOrUpdateSequenceEcritureComptable(pSequenceEcritureComptable, derniereValeur);
-//					} catch (FunctionalException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				} else {
-//					try {
-//						this.insertOrUpdateSequenceEcritureComptable(pSequenceEcritureComptable, derniereValeur);
-//						this.updateEcritureComptable(pEcritureComptable);
-//					} catch (FunctionalException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
 			}
 
 		} else {
@@ -308,7 +291,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 			} catch (NotFoundException vEx) {
 				// Dans ce cas, c'est bon, ça veut dire qu'on n'a aucune autre écriture avec la
 				// même référence.
-			}
+			} 
 		}
 	}
 
