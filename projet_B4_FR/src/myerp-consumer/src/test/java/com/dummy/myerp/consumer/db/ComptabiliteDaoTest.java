@@ -223,7 +223,6 @@ public class ComptabiliteDaoTest {
 		
 		EcritureComptable eComptableTest = comptabiliteDao.getEcritureComptableByRef(ref);
 		
-//		assertThat(eComptableTest).usingRecursiveComparison().isEqualTo(ecritureComptable);
 		assertThat(eComptableTest).isEqualToComparingFieldByFieldRecursively(ecritureComptable);
 	}
 	
