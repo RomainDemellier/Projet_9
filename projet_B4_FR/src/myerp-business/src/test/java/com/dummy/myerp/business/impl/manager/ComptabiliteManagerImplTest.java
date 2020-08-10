@@ -202,7 +202,8 @@ public class ComptabiliteManagerImplTest {
     }
     
     @Test
-    public void checkIncrementationDerniereValeurSequenceEcritureComptable1() throws Exception {
+    //cas où pas de séquence avec ce code cette année en base
+    public void checkAddReference1() throws Exception {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
         vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
@@ -241,7 +242,8 @@ public class ComptabiliteManagerImplTest {
     }
     
     @Test
-    public void checkIncrementationDerniereValeurSequenceEcritureComptable2() throws Exception {
+    //cas où séquence en base et pas écriture id null
+    public void checkAddReference2() throws Exception {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
         vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
@@ -281,7 +283,8 @@ public class ComptabiliteManagerImplTest {
     }
     
     @Test
-    public void checkIncrementationDerniereValeurSequenceEcritureComptable3() throws Exception {
+    //cas où séquence en base mais pas écriture avec id écriture non null
+    public void checkAddReference3() throws Exception {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
         vEcritureComptable.setId(6);
@@ -322,7 +325,8 @@ public class ComptabiliteManagerImplTest {
     }
     
     @Test
-    public void checkIncrementationDerniereValeurSequenceEcritureComptable4() throws Exception {
+    //séquence et écriture en base
+    public void checkAddReference4() throws Exception {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = manager.getEcritureComptableById(-1);
 
@@ -331,7 +335,6 @@ public class ComptabiliteManagerImplTest {
         
         SequenceEcritureComptable sequenceEcritureComptable;
         
-        sequenceEcritureComptable = manager.getSequenceEcritureComptableByCodeAndByAnnee(code, annee);
         int derniereValeur = 0;
         
         try {
@@ -354,9 +357,6 @@ public class ComptabiliteManagerImplTest {
     @Test(expected = FunctionalException.class)
     public void checkAddReferenceIfNull() throws Exception {
     	EcritureComptable vEcritureComptable = new EcritureComptable();
-    	//vEcritureComptable.setJournal(new JournalComptable("", "Test"));
-    	//vEcritureComptable.setJournal(new JournalComptable("AC", "Test"));
-    	//vEcritureComptable.setDate(new Date());
         vEcritureComptable.setLibelle("Libelle");
         vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(401),
                                                                                  null, new BigDecimal(123),
@@ -368,6 +368,7 @@ public class ComptabiliteManagerImplTest {
     }
     
     @Test
+    //check unit et context
     public void checkEcritureComptable() throws FunctionalException {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
@@ -385,6 +386,7 @@ public class ComptabiliteManagerImplTest {
     }
     
     @Test(expected = FunctionalException.class)
+    //check unit et context avec une mauvaise référence
     public void checkEcritureComptableBadRef() throws FunctionalException {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
@@ -402,6 +404,7 @@ public class ComptabiliteManagerImplTest {
     }
     
     @Test(expected = FunctionalException.class)
+    //check unit et context avec une référence qui existe déjà en base
     public void checkEcritureComptableBadContext() throws FunctionalException, ParseException {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();

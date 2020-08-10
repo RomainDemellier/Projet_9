@@ -238,19 +238,18 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 		// TODO ===== RG_Compta_5 : Format et contenu de la référence
 		// vérifier que l'année dans la référence correspond bien à la date de
 		// l'écriture, idem pour le code journal...
-//		String ref = pEcritureComptable.getReference();
-//		if (ref.isEmpty()) {
-//			throw new FunctionalException("vide");
-//		}
-//		String p = "^[A-Z]{1,5}-\\d{4}/\\d{5}";
-//		Pattern pattern = Pattern.compile(p);
-//		Matcher matcher = pattern.matcher(ref);
-//		if (!matcher.matches()) {
-//			throw new FunctionalException("Le format n'est pas respecté.");
-//		}
 
 		if (pEcritureComptable.getReference() != null) {
-			String code = pEcritureComptable.getReference().substring(0, 2);
+			String ref = pEcritureComptable.getReference();
+			String code = "";
+			for(int i = 0;i < ref.length();i++){
+				if(ref.charAt(i) == '-') {
+					break;
+				} else {
+					code = code + ref.charAt(i);
+				}
+			}
+			//String code = pEcritureComptable.getReference().substring(0, 2);
 			if (!code.equals(pEcritureComptable.getJournal().getCode())) {
 				throw new FunctionalException(
 						"Le code du journal dans la référence ne correspond pas au code du journal");

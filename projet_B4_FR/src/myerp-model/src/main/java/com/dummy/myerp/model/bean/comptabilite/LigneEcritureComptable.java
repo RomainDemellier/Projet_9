@@ -50,13 +50,14 @@ public class LigneEcritureComptable {
     public LigneEcritureComptable(CompteComptable pCompteComptable, String pLibelle,
                                   BigDecimal pDebit, BigDecimal pCredit) {
     	
-    	if(pCredit != null) {
-    		pCredit = pCredit.setScale(2, RoundingMode.CEILING);
+    	if(pDebit != null) {
+    		pDebit = pDebit.setScale(2, RoundingMode.DOWN);
     	}
     	
-    	if(pDebit != null) {
-    		pDebit = pDebit.setScale(2, RoundingMode.CEILING);
+    	if(pCredit != null) {
+    		pCredit = pCredit.setScale(2, RoundingMode.DOWN);
     	}
+    	
         compteComptable = pCompteComptable;
         libelle = pLibelle;
         debit = pDebit;
@@ -78,21 +79,27 @@ public class LigneEcritureComptable {
         libelle = pLibelle;
     }
     public BigDecimal getDebit() {
-    	if(debit != null) {
-    		return debit.setScale(2, RoundingMode.CEILING);
-    	}
+//    	if(debit != null) {
+//    		return debit.setScale(2, RoundingMode.DOWN);
+//    	}
         return debit;
     }
     public void setDebit(BigDecimal pDebit) {
+    	if(pDebit != null) {
+    		pDebit = pDebit.setScale(2, RoundingMode.DOWN);
+    	}
         debit = pDebit;
     }
     public BigDecimal getCredit() {
-    	if(credit != null) {
-    		return credit.setScale(2, RoundingMode.CEILING);
-    	}
+//    	if(credit != null) {
+//    		return credit.setScale(2, RoundingMode.DOWN);
+//    	}
         return credit;
     }
     public void setCredit(BigDecimal pCredit) {
+    	if(pCredit != null) {
+    		pCredit = pCredit.setScale(2, RoundingMode.DOWN);
+    	}
         credit = pCredit;
     }
 
