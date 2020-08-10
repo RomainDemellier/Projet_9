@@ -243,7 +243,6 @@ public class ComptabiliteDaoTest {
 		
 		SequenceEcritureComptable sComptableTest = comptabiliteDao.getSequenceEcritureComptableByCodeAndByAnnee(code, annee);
 		
-//		assertThat(sComptableTest).usingRecursiveComparison().isEqualTo(sequenceEcritureComptable);
 		assertThat(sComptableTest).isEqualToComparingFieldByField(sequenceEcritureComptable);
 	}
 	
