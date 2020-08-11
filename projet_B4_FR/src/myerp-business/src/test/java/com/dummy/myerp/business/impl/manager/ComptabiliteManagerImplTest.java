@@ -219,26 +219,13 @@ public class ComptabiliteManagerImplTest {
         int annee = vEcritureComptable.getYear();
         
         SequenceEcritureComptable sequenceEcritureComptable;
-        
-        int derniereValeur = 0;
-        
-        try {
-        	sequenceEcritureComptable = manager.getSequenceEcritureComptableByCodeAndByAnnee(code, annee);
-        	derniereValeur = sequenceEcritureComptable.getDerniereValeur();
-        } catch (NotFoundException e) {
-			// TODO: handle exception
-//        	int derniereValeur = 0;
-		}
-       
-        
+               
         manager.addReference(vEcritureComptable);
         
         sequenceEcritureComptable = manager.getSequenceEcritureComptableByCodeAndByAnnee(code,annee);
         int valeurIncremente = sequenceEcritureComptable.getDerniereValeur();
-      
-        int n = derniereValeur + 1;
         
-        assertThat(valeurIncremente).isEqualTo(n);
+        assertThat(valeurIncremente).isEqualTo(1);
     }
     
     @Test

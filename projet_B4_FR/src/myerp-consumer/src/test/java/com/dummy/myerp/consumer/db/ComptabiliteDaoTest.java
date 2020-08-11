@@ -195,7 +195,6 @@ public class ComptabiliteDaoTest {
 		
 		EcritureComptable eComptableTest = comptabiliteDao.getEcritureComptable(-4);
 		
-//		assertThat(eComptableTest).usingRecursiveComparison().isEqualTo(ecritureComptable);
 		assertThat(eComptableTest).isEqualToComparingFieldByFieldRecursively(ecritureComptable);
 	}
 	
@@ -255,6 +254,8 @@ public class ComptabiliteDaoTest {
 	} 
 
 	@Test
+	@Transactional
+	@Rollback
 	public void checkInsertSequenceEcritureComptable() throws NotFoundException {
 
 		List<SequenceEcritureComptable> sList = new ArrayList<SequenceEcritureComptable>();
@@ -279,6 +280,8 @@ public class ComptabiliteDaoTest {
 	}
 
 	@Test
+	@Transactional
+	@Rollback
 	public void checkUpdateSequenceEcritureComptable() throws NotFoundException {
 		SequenceEcritureComptable sequenceEcritureComptable = new SequenceEcritureComptable("BQ", 2016, 2);
 		comptabiliteDao.updateSequenceEcritureComptable(sequenceEcritureComptable);
@@ -325,6 +328,8 @@ public class ComptabiliteDaoTest {
 	}
 	
 	@Test
+	@Transactional
+	@Rollback
 	public void checkUpdateEcritureComptable() throws ParseException, NotFoundException {
 		EcritureComptable ecritureComptable = new EcritureComptable();
 		ecritureComptable.setId(-3);
